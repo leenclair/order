@@ -17,10 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/partners")
 public class PartnerApiController {
     private final PartnerFacade partnerFacade;
+    private final PartnerDtoMapper partnerDtoMapper;
 
     @PostMapping
-    public CommonResponse registerPartner(@RequestBody PartnerDto.RegisterRequest request){
-        PartnerCommand command = request.toCommand();
+    public CommonResponse<PartnerDto.RegisterResponse> registerPartner(@RequestBody PartnerDto.RegisterRequest request){
+//        pre mapstruct
+        //PartnerCommand command = request.toCommand();
+//        post mapstruct
+        PartnerCommand command = partnerDtoMapper.of(request);
         PartnerInfo partnerInfo = partnerFacade.registerPartner(command);
         PartnerDto.RegisterResponse response = new PartnerDto.RegisterResponse(partnerInfo);
 

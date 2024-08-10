@@ -16,7 +16,7 @@ public class ItemCommand {
     public static class RegisterItemRequest{
         private final String itemName;
         private final Long itemPrice;
-        private final List<RegisterItemOptionGroupRequest> itemOptionsGroupRequestList; // 색상, 사이즈 등
+        private final List<RegisterItemOptionGroupRequest> itemOptionGroupRequestList; // 색상, 사이즈 등
 
         public Item toEntity(Long partnerId){
             return Item.builder()
@@ -32,14 +32,14 @@ public class ItemCommand {
     @ToString
     public static class RegisterItemOptionGroupRequest {
         private final Integer ordering;
-        private final String itemOptionsGroupName;
+        private final String itemOptionGroupName;
         private final List<RegisterItemOptionRequest> itemOptionRequestList;
 
         public ItemOptionGroup toEntity(Item item){
             return ItemOptionGroup.builder()
                     .item(item)
                     .ordering(ordering)
-                    .itemOptionGroupName(itemOptionsGroupName)
+                    .itemOptionGroupName(itemOptionGroupName)
                     .build();
         }
     }

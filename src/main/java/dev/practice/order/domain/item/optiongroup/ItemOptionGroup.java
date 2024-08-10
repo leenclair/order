@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "item_options_groups")
+@Table(name = "item_option_groups")
 public class ItemOptionGroup extends AbstractEntity {
 
     @Id

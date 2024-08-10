@@ -26,7 +26,7 @@ public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory {
 
     @Override
     public List<ItemOptionGroup> store(ItemCommand.RegisterItemRequest command, Item item) {
-        List<ItemCommand.RegisterItemOptionGroupRequest> itemOptionsGroupRequestList = command.getItemOptionsGroupRequestList();
+        List<ItemCommand.RegisterItemOptionGroupRequest> itemOptionsGroupRequestList = command.getItemOptionGroupRequestList();
         if(CollectionUtils.isEmpty(itemOptionsGroupRequestList)) return Collections.emptyList();
 
         return itemOptionsGroupRequestList.stream()
