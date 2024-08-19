@@ -70,4 +70,26 @@ public class Order extends AbstractEntity {
         this.orderedAt = ZonedDateTime.now();
         this.status = Status.INIT;
     }
+
+    public Long calculateTotalAmount(){
+        return orderItemList.stream()
+                .mapToLong(OrderItem::calculateTotalAmount)
+                .sum();
+    }
+
+    public void orderComplete() {
+        if (this.status != Status.INIT) throw new IllegalStateException();
+        this.status = Status.ORDER_COMPLETE;
+    }
+
+    public boolean isAlreadyPaymentComplete(){
+        switch (this.status) {
+            case ORDER_COMPLETE:
+            case DELIVERY_PREPARE:
+            case IN_DELIVERY:
+            case DELIVERY_COMPLETE:
+                return true;
+        }
+        return false;
+    }
 }

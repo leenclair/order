@@ -76,6 +76,14 @@ public class OrderItem extends AbstractEntity {
         this.itemName = itemName;
         this.itemToken = itemToken;
         this.itemPrice = itemPrice;
+        this.deliveryStatus = DeliveryStatus.BEFORE_DELIVERY;
+    }
+
+    public Long calculateTotalAmount(){
+        long itemOptionTotalAmount = orderItemOptionGroupList.stream()
+                .mapToLong(OrderItemOptionGroup::calculateTotalAmount)
+                .sum();
+        return (itemPrice + itemOptionTotalAmount) * orderCount;
     }
 
 }

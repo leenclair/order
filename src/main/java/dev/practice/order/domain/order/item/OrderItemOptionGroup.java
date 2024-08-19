@@ -46,4 +46,10 @@ public class OrderItemOptionGroup extends AbstractEntity {
         this.ordering = ordering;
         this.itemOptionGroupName = itemOptionGroupName;
     }
+
+    public Long calculateTotalAmount(){
+        return orderItemOptionList.stream()
+                .mapToLong(OrderItemOption::getItemOptionPrice)
+                .sum();
+    }
 }
